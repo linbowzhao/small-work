@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: #ccc;
+        }
+        header{
+            width:100%;
+            position: fixed;
+            background-color: #393d49;
+            display: flex;
+            justify-content: space-between;
+        }
+        h1{
+            color: white;
+            margin: 10px;
+        }
+        header p{
+            display: inline-block;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+        p a{
+            text-decoration: none;
+            color: white;
+        }
+        section{
+            padding-top: 70px;
+            padding-bottom: 70px;
+            display: flex;
+            flex-flow: row nowrap;/*一行内不换行*/
+            align-items: flex-start;/*不加这一句左右两个元素会自动宽度同意，这句是水平轴顶意思*/
+        }
+        #left{
+            height: auto;
+            background-color: #ccc;
+            flex-grow: 1;/*自动补充剩余宽度*/
+            margin: 20px;
+        }
+        .contain{
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: justify;/*主要是为了是个图片两端对齐文本*/
+        }
+        .contain .image{
+            margin: 5px;
+            display: inline-block;
+            padding: 10px;
+            width: 150px;
+            border: 3px solid #393d49;
+        }
+        .contain p{
+            text-indent: 2em;/*首行缩进两个字节*/
+        }
+        #right{
+            height: auto;
+            width: 300px;
+            background-color: white;
+            margin: 20px;
+            padding: 20px;
+        }
+        footer{
+            width: 100%;
+            height: 50px;
+            background-color: #393d49;
+            color: white;
+            text-align: center;
+        }
+        form p{
+            white-space: nowrap;/*不换行*/
+        }
+        form p textarea{
+            vertical-align: text-top;
+        }
+        form p button{
+            background-color: blue;
+            color: white;
+            border: none;
+            height: 30px;
+            width: 100%;
+        }
+        table{
+            border-collapse: collapse;/*表格边框合并，不然哼难看*/
+            width: 100%;
+            border:1px solid #cccccc;
+        }
+        th{
+            border-collapse: collapse;
+            background-color: #393d49;
+            border:1px solid #cccccc;
+        }
+        td{
+            border:1px solid #cccccc;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>我的首页</h1>
+    <p>
+        <a href="#">公司简介</a>
+        <a href="#">公司业务</a>
+        <a href="#">公司论坛</a>
+        <a href="#">联系我们</a>
+    </p>
+</header>
+<section>
+    <div id="left">
+        <div class="contain">
+            <h2>这是一级标题</h2>
+            <h3>这是二级标题</h3>
+            <h4>作者 &nbsp;&nbsp;&nbsp;&nbsp;发布时间</h4>
+            <p>这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容
+                这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容
+                这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容
+                这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容
+
+            </p>
+            <img src="#" alt="这是图片" height="200px" width="400px ">
+            <p>这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容
+                这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容
+                这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容
+                这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容
+
+            </p>
+        </div>
+        <div class="contain">
+            <h2>这是一级标题</h2>
+            <h3>这是二级标题</h3>
+            <h4>作者 &nbsp;&nbsp;&nbsp;&nbsp;发布时间</h4>
+            <p>这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容
+                这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容
+                这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容
+                这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容
+
+            </p>
+            <img src="#" alt="这是图片" height="200px" width="400px ">
+            <p>这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容
+                这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容
+                这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容
+                这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容
+
+            </p>
+        </div>
+        <div class="contain">
+            <h2>图片</h2>
+            <div class="image">好看的图片：<img src="#" alt="图片" height="100px" width="100px"></div>
+            <div class="image">好看的图片：<img src="#" alt="图片" height="100px" width="100px"></div>
+            <div class="image">好看的图片：<img src="#" alt="图片" height="100px" width="100px"></div>
+            <div class="image">好看的图片：<img src="#" alt="图片" height="100px" width="100px"></div>
+            <div class="image">好看的图片：<img src="#" alt="图片" height="100px" width="100px"></div>
+            <div class="image">好看的图片：<img src="#" alt="图片" height="100px" width="100px"></div>
+            <div class="image">好看的图片：<img src="#" alt="图片" height="100px" width="100px"></div>
+            <div class="image">好看的图片：<img src="#" alt="图片" height="100px" width="100px"></div>
+            <div class="image">好看的图片：<img src="#" alt="图片" height="100px" width="100px"></div>
+            <div class="image">好看的图片：<img src="#" alt="图片" height="100px" width="100px"></div>
+        </div>
+        <div class="contain">
+            <h2>标题</h2>
+            <ol>
+                <li>排名1</li>
+                <li>排名2</li>
+                <li>排名3</li>
+            </ol>
+            <p>下面是一个表格</p>
+            <table>
+                <tr>
+                    <th>表头</th>
+                    <th>表头</th>
+                    <th>表头</th>
+                </tr>
+                <tr>
+                    <td>内容</td>
+                    <td>内容</td>
+                    <td>内容</td>
+                </tr>
+                <tr>
+                    <td>内容</td>
+                    <td>内容</td>
+                    <td>内容</td>
+                </tr>
+                <tr>
+                    <td>内容</td>
+                    <td>内容</td>
+                    <td>内容</td>
+                </tr>
+                <tr>
+                    <td>内容</td>
+                    <td>内容</td>
+                    <td>内容</td>
+                </tr>
+                <tr>
+                    <td>内容</td>
+                    <td>内容</td>
+                    <td>内容</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="right">
+        <form>
+            <h2>|侧栏标题</h2>
+            <p><label for="email">请输入邮箱地址：</label><input type="text" name="email" id="email"></p>
+            <p><label for="password">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请输入密码：</label><input type="text" name="password" id="password"></p>
+            <p><label for="password2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;重复密码：</label><input type="text" name="password2" id="password2"></p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;性别：<input type="radio" name="sex" value="male">男<input type="radio" name="sex" value="female">女</p>
+            <p><label for="city">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;城市：</label>
+                <select name="city" id="city">
+                    <option value="ShangTou">汕头</option>
+                    <option value="GuangDong">广东</option>
+                </select>
+            </p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;爱好：
+                <input type="checkbox">运动
+                <input type="checkbox">艺术
+                <input type="checkbox">科学
+            </p>
+            <p><label for="describe">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;个人描述：</label>
+                <textarea id="describe" rows="5" required>
+                </textarea>
+            </p>
+            <p><button>确认提交</button></p>
+        </form>
+    </div>
+</section>
+<footer>版权所有@</footer>
+</body>
+</html>

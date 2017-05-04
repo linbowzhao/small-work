@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            padding:0px;
+            margin: 0px;
+            background-color: aliceblue;
+        }
+        .nav{
+            height: 50px;
+            width: 100%;
+            padding: 0px;
+            margin: 0px;
+            background-color: black;
+        }
+        .nav div{
+            color: whitesmoke;
+            font-size:30px;
+            margin:0 auto;
+            justify-content: space-around;
+            width: 30%;
+        }
+        #container1,#container2{
+            width: 30%;
+            height: auto;
+            margin: 0 auto;
+        }
+        #list{
+            width: 100%;
+            height: auto;
+        }
+        form{
+            display: flex;
+            background-color: white;
+            margin: 5px;
+            justify-content: space-between;
+        }
+        li{
+            list-style: none;
+        }
+
+    </style>
+</head>
+<body>
+<!--导航栏-->
+<div class="nav">
+    <div>
+        <span>ToDolist</span>
+        <input type="text" id="add" placeholder="添加todo" required >
+        <input type="button" id="button" value="提交">
+    </div>
+</div>
+<!--导航栏-->
+<!--内容页-->
+<div id="list">
+    <div id="container1">
+        <h2>正在进行<span id="doing"></span></h2>
+        <form><input type="checkbox" checked="push()"><li>1111111111</li><button>-</button></form>
+    </div>
+    <div id="container2">
+        <h2>已经完成<span id="done"></span></h2>
+    </div>
+</div>
+<!--内容页-->
+</body>
+<script>
+    function show() {
+        //未完成区的
+        if(localStorage.unfinish) {
+            var unfinish=localStorage.getItem("unfinish");//把unfinish字符串提取出来
+            var unfinish=unfinish.split(',');//把字符串转换成数组重新赋值给unfinish
+        }else{var unfinish=[];}
+        document.getElementById("doing").innerHTML=unfinish.length;
+        if(unfinish.length!==0){
+            for(var i=unfinish.length;i>0;i--){
+                var form=document.createElement("form");
+                var input=document.createElement("input");
+                var li=document.createElement("li");
+                var button= document.createElement("button");
+                input.setAttribute("type","checkbox");
+                li.innerHTML=unfinish[i-1];
+                button.innerHTML="-";
+                form.setAttribute("id",i-1);
+                form.appendChild(input);
+                form.appendChild(li);
+                form.appendChild(button);
+                var container1=document.getElementById("container1");
+                container1.appendChild(form);
+            }
+        }
+        //完成区的
+        if(localStorage.finish) {
+            var finish=localStorage.getItem("finish");//把finish字符串提取出来
+            var finish=finish.split(',');//把字符串转换成数组重新赋值给finish
+        }else{var finish=[];}
+        document.getElementById("done").innerHTML=finish.length;
+        if(finish.length!==0){
+            for(var i=finish.length;i>0;i--){
+                var form=document.createElement("form");
+                var input=document.createElement("input");
+                var li=document.createElement("li");
+                var button= document.createElement("button");
+                input.setAttribute("type","checkbox");
+                li.innerHTML=finish[i-1];
+                button.innerHTML="-";
+                form.setAttribute("id",i-1);
+                form.appendChild(input);
+                form.appendChild(li);
+                form.appendChild(button);
+                var container2=document.getElementById("container2");
+                container2.appendChild(form);
+            }
+        }
+    }
+    //把输入的值存入localStorage
+    show();
+    document.getElementById("button").onclick=function save() {
+        if(localStorage.unfinish) {
+            var unfinish=localStorage.getItem("unfinish");//把unfinish字符串提取出来
+            var unfinish=unfinish.split(',');//把字符串转换成数组重新赋值给unfinish
+        }else{var unfinish=[];}
+        var work = document.getElementById("add").value;
+        unfinish.push(work);
+        localStorage.setItem("unfinish",unfinish);
+        window.location.reload();
+    }//把所有未完成任务变成字符串插入localstorage.unfinish
+    //监听事件把未完成的添加到完成里
+    document.getElementById("container1").addEventListener("click",function(event){
+        if(localStorage.unfinish) {
+            var unfinish=localStorage.getItem("unfinish");//把unfinish字符串提取出来
+            var unfinish=unfinish.split(',');//把字符串转换成数组重新赋值给unfinish
+        }else{var unfinish=[];}
+        if(localStorage.finish) {
+            var finish=localStorage.getItem("finish");//把finish字符串提取出来
+            var finish=finish.split(',');//把字符串转换成数组重新赋值给finish
+        }else{var finish=[];}
+        var i=parseInt(event.target.parentNode.id);
+        var del =unfinish.splice(i,1);
+        if(event.target.nodeName.toLowerCase()==="input"){
+            finish.push(del);
+            localStorage.setItem("finish",finish);
+            localStorage.setItem("unfinish",unfinish);
+            event.target.parentNode.parentNode.removeChild(event.target.parentNode);
+        }else if(event.targer.nodeName.toLowerCase()==="button"){
+            localStorage.setItem("finish",finish);
+            event.target.parentNode.parentNode.removeChild(event.target.parentNode);
+        }
+        window.location.reload();
+    });
+    //删除元素
+    document.getElementById("list").addEventListener("click",function(event){
+        if(event.target.parentNode.parentNode.id==="container1"){
+            var unfinish=localStorage.getItem("unfinish");//把unfinish字符串提取出来
+            var unfinish=unfinish.split(',');//把字符串转换成数组重新赋值给unfinish
+            var i= parseInt(event.target.parentNode.id);
+            unfinish.splice(i,1);
+            localStorage.setItem("unfinish",unfinish);
+            event.target.parentNode.parentNode.removeChild(event.target.parentNode);
+        }
+        if(event.target.parentNode.parentNode.id==="container2"){
+            var finish=localStorage.getItem("finish");//把finish字符串提取出来
+            var finish=finish.split(',');//把字符串转换成数组重新赋值给finish
+            var i= parseInt(event.target.parentNode.id);
+            finish.splice(i,1);
+            localStorage.setItem("finish",finish);
+            event.target.parentNode.parentNode.removeChild(event.target.parentNode);
+        }
+        window.location.reload();
+    });
+</script>
+
+</html>

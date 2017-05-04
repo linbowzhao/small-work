@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        #fill{
+            width: 100%;
+            height: 2000px;
+            background-color: #29b1bf;
+        }
+        #date{
+            position: fixed;
+            display: inline-block;
+            background-color: white;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+<div id="date">
+    <p id="screen">screen<span></span></p>
+    <p id="client">clientX<span></span></p>
+    <p id="page">pageX<span></span></p>
+</div>
+<div id="fill"></div>
+<script>
+    var screen=document.getElementById('screen');
+    var client=document.getElementById('client');
+    var page=document.getElementById('page');
+    document.getElementById('fill').addEventListener('mousedown',function(e){
+        var screenX=e.screenX;
+        var screenY=e.screenY;
+        var clientX=e.clientX;
+        var clientY=e.clientY;
+        var pageX=e.pageX;
+        var pageY=e.pageY;
+        screen.children[0].innerText='X:'+screenX+'Y:'+screenY;
+        client.children[0].innerText='X:'+clientX+'Y:'+clientY;
+        page.children[0].innerText='X:'+pageX+'Y:'+pageY;
+    });
+</script>
+</body>
+</html>

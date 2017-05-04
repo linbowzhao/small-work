@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        #container{
+            background-color: #eee;
+            width: 100%;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .fill{
+            background-color: #ccc;
+            width: 400px;
+            height: 200px;
+            margin: 0;
+            padding: 0;
+        }
+        #radius{
+            width: 25px;
+            height: 25px;
+            -webkit-border-bottom-right-radius: 25px;
+            border-color: yellow;
+            background-color: yellow;
+        }
+        #radius1{
+            position: relative;
+            left: 375px;
+            top: 150px;
+            width: 25px;
+            height: 25px;
+            -webkit-border-top-left-radius: 25px;
+            border-color: yellow;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div class="fill">
+        <div id="radius"></div>
+        <div id="radius1"></div>
+    </div>
+</div>
+</body>
+</html>

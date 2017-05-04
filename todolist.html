@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            padding:0px;
+            margin: 0px;
+            background-color: aliceblue;
+        }
+        .nav{
+            height: 50px;
+            width: 100%;
+            padding: 0px;
+            margin: 0px;
+            background-color: black;
+        }
+        .nav div{
+            color: whitesmoke;
+            font-size:30px;
+            margin:0 auto;
+            justify-content: space-around;
+            width: 30%;
+        }
+        #container1,#container2{
+            width: 30%;
+            height: auto;
+            margin: 0 auto;
+        }
+        #list{
+            width: 100%;
+            height: auto;
+        }
+        form{
+            display: flex;
+            background-color: white;
+            margin: 5px;
+            justify-content: space-between;
+        }
+        li{
+            list-style: none;
+        }
+
+    </style>
+</head>
+<body>
+<!--导航栏-->
+<div class="nav">
+    <div>
+        <span>ToDolist</span>
+        <input type="text" id="add" placeholder="添加todo" >
+        <input type="button" id="button" value="提交">
+    </div>
+</div>
+<!--导航栏-->
+<!--内容页-->
+<div id="list">
+    <div id="container1">
+        <h2>正在进行<span id="doing"></span></h2>
+    </div>
+    <div id="container2">
+        <h2>已经完成<span id="finish"></span></h2>
+    </div>
+</div>
+<!--内容页-->
+</body>
+<script>
+    var i=0;//已经完成
+    var j=0;//未完成数
+    document.getElementById("button").onclick=function(){
+        var addValue = document.getElementById("add").value;//获得输入框的值
+        var form=document.createElement("form");//创建form标签
+        var li= document.createElement("li");//创建li标签
+        var button=document.createElement("button");//创建删除按钮
+        li.innerHTML=addValue;//输入框里的值代入
+        button.innerHTML="-";
+        var check= document.createElement("input");//创建check按钮
+        check.setAttribute("type","checkbox");//设置好check
+        var container1= document.getElementById("container1");//找到插入位置父元素
+        form.appendChild(check);//插入check
+        form.appendChild(li);//插入li标签
+        form.appendChild(button);//插入删除按钮
+        container1.appendChild(form);
+        i=i+1;
+        var doing=document.getElementById("doing");
+        var finish=document.getElementById("finish");
+        doing.innerHTML=i;
+        finish.innerH=j;
+    };
+    document.getElementById("list").addEventListener("click",function(event)//事件监听
+    {
+        if(event.target &&event.target.nodeName.toLowerCase()==="input"){
+            if(event.target.checked){
+                i=i-1;
+                j=j+1;
+                document.getElementById("container2").appendChild(event.target.parentNode);//把选到元素移到完成区
+            }
+        }else if(event.target &&event.target.nodeName.toLowerCase()==="button"){
+            if(event.target.parentNode.parentNode.id==="container1"){
+                i=i-1;
+            }else{j=j-1;}
+            event.target.parentNode.parentNode.removeChild(event.target.parentNode);//删除元素
+        }
+        var doing=document.getElementById("doing");
+        var finish=document.getElementById("finish");
+        doing.innerHTML=i;
+        finish.innerHTML=j;
+    });
+
+
+</script>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        #container{
+            margin: 0;
+            background-color: #eee;
+            height: auto;
+            width: 100%;
+        }
+        #left{
+            width: 200px;
+            float: left;
+            background-color: white;
+            margin: 20px;
+            padding: 20px;
+        }
+        #center{
+            position: absolute;
+            left: 280px;
+            right: 200px;
+            width: auto;
+            background-color: white;
+            margin: 20px;
+            padding: 20px;
+        }
+        #right{
+            float: right;
+            width: 120px;
+            background-color: white;
+            margin: 20px;
+            padding: 20px;
+        }
+        .fill{
+            width: 50px;
+            height: 50px;
+            background-color: #eee;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="left"><div class="fill">这是填充的地方</div></div>
+    <div id="center">
+        这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容
+        这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容
+        这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容
+        这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容
+    </div>
+    <div id="right">
+        <div class="fill">这是填充的地方</div>
+        <div class="fill">这是填充的地方</div>
+        <div class="fill">这是填充的地方</div>
+        <div class="fill">这是填充的地方</div>
+    </div>
+    <div style="clear: both"></div><!--设置了浮动清除元素container才会被撑开，还有一种办法是设置contaier也浮动，还是这种好--!>
+</div>
+</body>
+</html>
