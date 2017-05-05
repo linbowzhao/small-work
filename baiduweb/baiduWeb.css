@@ -1,0 +1,151 @@
+*{
+    font-family: 微软雅黑;
+}
+body{
+    margin: 0;
+}
+a{
+    color: #8e9197;
+    text-decoration: none
+}
+/*导航栏部分*/
+#nav{
+    width: 100%;
+    height: 53px;
+}
+#nav div{
+    height: 56px;
+    font-size:26px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+#logo{
+    float: left;
+    margin-left: 50px;
+}
+#login{
+    float: right;
+    margin-right: 50px;
+}
+#nav ul{
+    float: right;
+    margin-right: 80px;
+    margin-left: 0;
+    padding: 0;
+    position: relative;
+}
+#nav ul li{
+    list-style: none;
+    display: inline-block;
+    width: 80px;
+    text-align: center;
+}
+/*一个随着选择移动的浮动条*/
+.list-bottom{
+    background-color: red;
+    width: 80px;
+    height: 2px;
+    position:absolute;
+    left: 0;
+    top: 35px;
+    transition: left .2s ease-in-out;
+}
+#nav ul li:nth-child(2):hover~.list-bottom{
+    left: 80px;
+}
+#nav ul li:nth-child(3):hover~.list-bottom{
+    left: 160px;
+}
+#nav ul li:nth-child(4):hover~.list-bottom{
+    left: 240px;
+}
+#nav ul li:nth-child(5):hover~.list-bottom{
+    left: 320px;
+}
+/*一个随着选择移动的浮动条*/
+#nav div img{
+    margin: auto;
+}
+#nav div span{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+/*导航栏部分*/
+/*banner部分*/
+.image{
+    height: auto;
+    width: auto;
+    position: relative;
+}
+.image .banner{
+    width: 100%;
+    height: auto;
+    margin-top: -3px;/*不知道为啥img顶部有3px的bug，百度说是这里有一个空白符，这里是修正办法*/
+}
+.image .icon{
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 75%;
+}
+.begin{
+    position: absolute;
+    top: 55%;
+    left: 15%;/*这里用百分比定位，避免浏览器分辨率不同的问题*/
+    height: auto;
+    width: 180px;
+    font-size: 30px;
+    text-align: center;
+    letter-spacing: 10px;
+    background-color: #e74f4d;
+    color: white;
+    padding: 5px;
+    transition: background-color .2s,color .2s;
+}
+.begin:hover{
+    background-color: white;
+    color: #e74f4d;
+}
+.image table{
+    width: 100%;
+    background-color: white;
+    height: 80px;
+    position: absolute;
+    top: 92%;
+    text-align: center;
+    padding-left: 25px;
+    border-collapse: collapse;
+}
+.image table tr td{
+    border-right: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+}
+/*banner部分*/
+/*word部分*/
+.word{
+    width: 100%;
+    height: 200px;
+    color: #8e9197;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    background-color:#ededec;
+    font-size: 25px;
+}
+.word img{
+    width: 100px;
+    height: auto;
+}
+/*word部分*/
+.map{
+    width: 100%;
+}
+hr{
+    width: 20px;
+    transition: width .5s;
+}
+.form:hover>hr{
+    width: 200px;
+}
