@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>try</title>
+</head>
+<body>
+<style>
+    div{
+        border: 1px solid black;
+        display: inline-block;
+        padding: 25px;
+        margin: 20px;
+        background-color: white;
+    }
+</style>
+<div class="container">
+    <div class="container1">
+        <div class="container11">
+            <div class="container111"></div>
+            <div class="container112"></div>
+        </div>
+        <div class="container12">
+            <div class="container121"></div>
+            <div class="container122"></div>
+        </div>
+    </div>
+    <div class="container2">
+        <div class="container21">
+            <div class="container211"></div>
+            <div class="container212"></div>
+        </div>
+        <div class="container22">
+            <div class="container221"></div>
+            <div class="container222"></div>
+        </div>
+    </div>
+</div>
+<div class="button" style="margin-left: 40%">
+    <button class="DLR">前序遍历</button><!--前序遍历，先根后左再右-->
+    <button class="LDR">中序遍历</button><!--中序遍历，先左后根再右-->
+    <button class="LRD">后序遍历</button><!--后序遍历，先左后右再根-->
+</div>
+</body>
+<script>
+    var container=document.getElementsByClassName("container")[0];
+    /*选中DOM的着色200ms后消失*/
+    var j=0;
+    function paint(ev) {
+        j++;
+        setTimeout(function(ev){
+            document.getElementsByClassName(ev)[0].setAttribute("style","background-color:green");
+            setTimeout(function () {
+                document.getElementsByClassName(ev)[0].setAttribute("style","background-color:white");
+            },200);//设置成绿色后0.2毫秒变白
+        },500*j,ev);
+    }
+    /*选中DOM的着色500ms后消失*/
+    /*前序遍历*/
+    function DLRselect(dom) {
+        var parent=document.getElementsByClassName(dom)[0];
+        var length=parent.children.length;
+        for(var i=0;i<length;i++){
+            dom=parent.children[i].className;
+            paint(dom);
+            DLRselect(dom);
+    }//传入父元素class，对其子元素进行前序顺序paint操作
+    }
+    document.getElementsByClassName("DLR")[0].addEventListener("click",function(){
+        paint(container.className);
+        DLRselect(container.className);
+        j=0;//全局变量j复位，避免第二次点击从15开始，体现js的单线程机制
+    });
+    /*前序遍历*/
+    /*中序遍历*/
+    var arr=["container"];
+    function LDRselect(dom) {
+        var dom=document.getElementsByClassName(dom)[0];
+        if(dom.children[0]!==undefined){
+            var root=arr.indexOf(dom.className);//两个定义不然左边插入后root发生改变
+            arr.splice(root,0,dom.children[0].className);
+            LDRselect(dom.children[0].className);
+        }
+        if(dom.children[1]!==undefined){
+            var root=arr.indexOf(dom.className)//两个定义不然左边插入后root发生改变
+            arr.splice(root+1,0,dom.children[1].className);
+            LDRselect(dom.children[1].className);
+        }
+        return arr;
+    }//从父元素开始读，左元素就插到根元素左边，右插右边，返回数组
+    document.getElementsByClassName("LDR")[0].addEventListener("click",function(){
+        LDRselect(container.className);
+        for(var i=0;i<arr.length;i++){
+            paint(arr[i]);
+        }
+        arr=["container"];//初始化
+        j=0;
+    });
+    /*中序遍历*/
+    /*后序遍历*/
+    function LRDselect(dom){
+        var dom=document.getElementsByClassName(dom)[0];
+        if(dom.children[0]!==undefined){
+            var root=arr.indexOf(dom.className);//两个定义不然左边插入后root发生改变
+            arr.splice(root,0,dom.children[0].className);
+            LRDselect(dom.children[0].className);
+        }
+        if(dom.children[1]!==undefined){
+            var root=arr.indexOf(dom.className);//两个定义不然左边插入后root发生改变
+            arr.splice(root,0,dom.children[1].className);
+            LRDselect(dom.children[1].className);
+        }
+    }
+    document.getElementsByClassName("LRD")[0].addEventListener("click",function(){
+        LRDselect(container.className);
+        console.log(arr);
+        for(var i=0;i<arr.length;i++){
+            paint(arr[i]);
+        }
+        arr=["container"];//初始化
+        j=0;
+    });
+    /*后序遍历*/
+</script>
+</html>
