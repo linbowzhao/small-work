@@ -1,0 +1,118 @@
+body{
+    margin: 0;
+    font-family: 微软雅黑;
+}
+/*顶部导航栏*/
+a{
+    text-decoration: none;
+    color: inherit;
+}
+li{
+    list-style: none;
+}
+.main{
+    background-color: #2189bf;
+    padding-right: 100px;
+    padding-left: 50px;
+}
+form.search{
+    float: right;
+    display: block;
+    margin-top: 12px;
+    color: white;
+    font-size: 12px;
+}
+#search{
+    border:white solid 1px;
+    border-radius: 10px;
+    width: 300px;
+    background: white url("search.png") no-repeat left;
+    padding-left: 30px;
+    margin-right: 20px;
+}
+/*顶部导航栏*/
+/*左侧导航栏*/
+.left{
+    width: 18%;
+    background-color: #2a2e3d;
+    color: #cccccc;
+    padding-top: 60px;
+    font-size: 12px;
+    display: inline-block;
+}
+.userHead{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.flexAround{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content:space-around;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.navLeft{
+    padding-left: 0;
+}
+.navLeft li{
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+}
+.navLeft li:hover,navLeft li:focus{
+    background-color: #777777;
+}
+/*左侧导航栏*/
+/*右边内容栏*/
+.right{
+    width: 82%;
+    position: absolute;
+    left: 18%;
+    background-color: whitesmoke;
+    display: inline-block;
+}
+/*右边内容栏*/
+.top{
+    width: 100%;
+    color: #393d49;
+    font-size: 20px;
+    background-color: white;
+}
+.container{
+    width: 882px;
+    margin: auto;
+}
+.container section{
+    margin: 20px;
+    padding: 20px;
+}
+.contain{
+    background-color: white;
+    box-shadow: 0 0 3px grey;
+}
+.container1 form ,.noForm{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    color: #cccccc;
+}
+.container form div,.container div{
+    margin: auto;
+    background-color: white;
+}
+#num{
+    width: 100px;
+}
+#findButton{
+    background-color: blue;
+    color: white;
+    border: none;
+    height: 25px;
+    width: 50px;
+    border-radius: 5px;
+}
+.container1 select{
+    height: 25px;
+    margin-top: 2px;
+}

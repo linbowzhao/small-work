@@ -24,28 +24,29 @@
     }
     request.open("POST","http://v.juhe.cn/toutiao/index?type=top&key=282ac76eeea202bce19509b7d72e2f8f");
     request.send();
-    request.onreadystatechange =function(){
-        if(request.readyState===4 && request.status===200){
-            var passage=JSON.parse(request.responseText);
-            var contents=document.getElementById("contents");
-            var data=passage.result.data;
-            for(var i=0;i<data.length;i++){
-                var form=document.createElement("form");
-                var h2=document.createElement("h2");
-                var a=document.createElement("a");
-                var p=document.createElement("p");
-                h2.innerHTML=data[i].title;
-                a.innerHTML=data[i].url;
-                a.setAttribute("href",data[i].url);
-                p.innerHTML=data[i].date;
+    request.onreadystatechange =function() {
+        if (request.readyState === 4 && request.status === 200) {
+            var passage = JSON.parse(request.responseText);
+            var contents = document.getElementById("contents");
+            var data = passage.result.data;
+            for (var i = 0; i < data.length; i++) {
+                var form = document.createElement("form");
+                var h2 = document.createElement("h2");
+                var a = document.createElement("a");
+                var p = document.createElement("p");
+                h2.innerHTML = data[i].title;
+                a.innerHTML = data[i].url;
+                a.setAttribute("href", data[i].url);
+                p.innerHTML = data[i].date;
                 form.appendChild(h2);
                 form.appendChild(a);
                 form.appendChild(p);
                 contents.appendChild(form);
             }
-        }else{
-            if(request.status!==200){
-            document.getElementById("contents").innerHTML="error"+request.status;
+        } else {
+            if (request.status !== 200) {
+                document.getElementById("contents").innerHTML = "error" + request.status;
+            }
         }
     };
 </script>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>已知两种二叉树求第三种</title>
+</head>
+<body>
+<label for="pre_tree">前序顺序</label>
+<input type="text" id="pre_tree">
+<label for="infix_tree">中序顺序</label>
+<input type="text" id="infix_tree">
+<label for="post_tree">后序顺序</label>
+<input type="text" id="post_tree">
+<button id="submit">转换</button>
+
+<script type="text/javascript">
+    document.getElementById("submit").addEventListener("click",function(){
+        var pre=document.getElementById("pre_tree").value;
+        var infix=document.getElementById("infix_tree").value;
+        var post=document.getElementById("post_tree").value;
+        if(infix===""){
+            alert("必须输入中序遍历树哦");
+        }else if(pre!==""&&post===""){
+            getLRD(pre,infix);
+            str=stringRe(str);
+            document.getElementById("post_tree").value=str;
+            str="";
+        }else if(pre===""&&post!==""){
+            getDLR(infix,post);
+            document.getElementById("pre_tree").value=str;
+            str="";
+        }else{alert("留个空给我补充嘛");}
+    });
+
+    var str="";
+    function getDLR(infix,post){
+        if(infix.length>=3){
+            var root=infix.indexOf(post[post.length-1]);
+            str+=post[post.length-1];
+            getDLR(infix.slice(0,root),post.slice(0,root));
+            getDLR(infix.slice(root+1),post.slice(root,post.length-1));
+        }else{
+            str+=post;
+        }
+    }//前序排序数组
+
+    //由前后序求中序咋求啊
+
+    function getLRD(pre,infix){
+        if (pre.length>=3){
+            var root=infix.indexOf(pre[0]);
+            str+=pre[0];
+            getLRD(pre.slice(root+1),infix.slice(root+1));
+            getLRD(pre.slice(1,root+1),infix.slice(0,root));
+        }else{
+            str+=infix;
+        }
+    }//后序排序数组,但是顺序是反的，需要调用stringRe函数对字符串反排序
+    function stringRe(str){
+        arr=str.split("");
+        arr.reverse();
+        str=arr.join("");//这里要加上双引号，不然会默认为数组元素之间用“，”连接
+        return str;
+    }//字符串反转函数
+
+</script>
+</body>
+</html>

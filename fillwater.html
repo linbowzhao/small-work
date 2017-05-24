@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>try</title>
+</head>
+<body>
+
+</body>
+<script>
+    function cut(arr){
+        var arr2=[];
+        var j=arr[0];
+        var k=0;//k为上一个最高峰的位置
+        for(var i=0;i<arr.length;i++){
+            if(j<=arr[i+1]){
+                j=arr[i+1];
+                arr2.push(arr.slice(k,i+2));
+                k=i+1;
+            }
+            if(i===arr.length-1){
+                arr2.push(arr.slice(k));// 最后一段，第一个就是最高的，后面没有比它高的了
+            }
+        }
+        return arr2;
+    }//把输入数组分成一个个小数组，每个数组中的水是联通的，最后一个数组是未处理的
+    function count(arr){
+        var length=arr.length;
+        var sum=0;//中间的block的和，没有首尾的哈
+        for(var i=1;i<length-1;i++){
+            sum=sum+arr[i];
+        }
+        if(length===1){ length=2;}
+        var water=arr[0]*(length-2)-sum;//length的长度可能是1，这样就变成负数了，加条件
+        return water;
+    }
+    function sort1(arr){
+        var arr2=[];
+        for(var i=arr.length-1;i>-1;i--){
+            arr2.push(arr[i]);
+        }
+        return arr2;
+    }//针对第一行就是最高，后面没有比它更矮的一种情况
+    //上面都是函数的定义
+    var trap = function(height) {
+        var arr=cut(height);
+        var sum=0;//所有水的总和
+        var length=arr.length;
+        for(var i=0;i<length-1;i++){
+            sum=sum+count(arr[i]);
+        }//除最后一个数组高度蓄的水加起来
+        if(arr[length-1][0]>=Math.max.apply(null,arr[length-1])){
+            var arr=sort1(arr[length-1]);
+            var arr2=cut(arr);
+            for(var i=0;i<arr2.length;i++){
+                sum=sum+count(arr2[i]);
+            }
+        }
+        return sum;
+    };
+    var test=[5,1,2,3,7,3,3,3,1,1,1,1,2];
+    console.log(trap(test));
+</script>
+</html>
