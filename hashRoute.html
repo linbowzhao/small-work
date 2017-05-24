@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<!-- this starts off as http://example.com/line?x=5 -->
+<title>hash实现路由跳转</title>
+<p>
+    <a href="#/1">网页一</a>
+    <a href="#/2">网页二</a>
+    <a href="#/3">网页三</a>
+</p>
+<div id="content"></div>
+<script>
+    function Router() {
+        this.routes = {};
+        this.currentUrl = '';
+    }//储存当前页面hash值和页面数据的函数
+    Router.prototype.route = function(path, callback) {
+        this.routes[path] = callback || function(){};
+    };//往Router里写入数据
+    Router.prototype.refresh = function() {
+        this.currentUrl = location.hash.slice(1) || '/';//注意这里的this指向window
+        this.routes[this.currentUrl]();//找到对应函数，最后面的括号让这个函数立即执行
+    };//根据curentUrl刷新页面数据
+    Router.prototype.init = function() {
+        window.addEventListener('load', this.refresh.bind(this), false);//页面第一次读取的时候没有hashchange，而是load
+        window.addEventListener('hashchange', this.refresh.bind(this), false);//后面的bind把this重定位到了refresh
+    };//监听页面
+
+    window.Router = new Router();//根据Router原型创建新对象
+    window.Router.init();
+    var content = document.getElementById("content");
+    // change Page anything
+    function show(passage) {
+        content.innerHTML=passage;
+    }
+    Router.route('/1', function() {
+        show("<h1>这是第一篇文章</h1>");//我们在这里插入子页面？？？？
+    });
+    Router.route('/2', function() {
+        show("<h1>这是第二篇文章</h1>");
+    });
+    Router.route('/3', function() {
+        show("<h1>这是第三篇文章</h1>");
+    });
+
+</script>
