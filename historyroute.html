@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<title>history实现路由跳转</title>
+<p>
+    <a href="?/d=1" onclick="go(1);return false;">网页一</a>
+    <a href="?/d=2" onclick="go(2);return false;">网页二</a>
+    <a href="?/d=3" onclick="go(3);return false;">网页三</a>
+    <!--重点在这个return false里，不然还是会刷新-->
+</p>
+<div id="content"></div>
+
+<script>
+    function go(d){
+        history.pushState(setupPage(d),d,'?d='+d);
+        console.log(history.length);
+    }
+    onpopstate = function(event) {
+        setupPage(event.state);
+    };//不加这个函数点击浏览器的前进后退按钮页面就只会创建不会刷新显示
+    function setupPage(d) {
+        document.getElementById('content').innerHTML = passage[d];
+    }
+    var passage={
+        1:"<h1>这是第一个网页</h1>",
+        2:"<h1>这是第二个网页</h1>",
+        3:"<h1>这是第三个网页</h1>"
+    };
+</script>
