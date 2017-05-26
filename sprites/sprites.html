@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>雪碧图</title>
+    <style>
+        ul.Sprites{ margin:0 auto; border:1px solid #F00; width:300px; padding:10px;}
+        ul.Sprites li{ height:24px; font-size:14px;line-height:24px; text-align:left; overflow:hidden}
+        ul.Sprites li span{ float:left; width:17px;padding-top:5px;height:17px;/*把要展示背景的dom大小固定*/
+            overflow:hidden;background:url(ico.png) no-repeat}/*这里载入图片，不重复，这样就只进行了一次http请求*/
+        ul.Sprites li a{ padding-left:5px}
+        ul.Sprites li span.a1{ background-position: -62px -32px}/*这里利用定位，表示把背景向左移动62px,向上移动32px*/
+        ul.Sprites li span.a2{ background-position: -86px -32px}
+        ul.Sprites li span.a3{ background-position: -110px -32px}
+        ul.Sprites li span.a4{ background-position: -133px -32px}
+        ul.Sprites li span.a5{ background-position: -158px -32px}
+    </style>
+</head>
+<body>
+<ul class="Sprites">
+    <li><span class="a1"></span><a href="#">WORD文章标题</a></li>
+    <li><span class="a2"></span><a href="#">PPT内容标题</a></li>
+    <li><span class="a3"></span><a href="#">Excel内容标题</a></li>
+    <li><span class="a4"></span><a href="#">PDF内容标题</a></li>
+    <li><span class="a5"></span><a href="#">文本文档标题</a></li>
+</ul>
+</body>
+<script>
+</script>
+</html>
