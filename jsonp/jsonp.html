@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+<style>
+    form{
+        width: 70%;
+        margin: auto;
+        color: white;
+        background-color: #2fbbca;
+        text-align: center;
+    }
+</style>
+<div class="json"></div>
+<div id="contents">
+</div>
+<script>
+    //动态插入script
+  function addScript(src){
+      var script=document.createElement("script");
+      script.src=src;
+      script.setAttribute("type","text/javascript");
+      document.body.appendChild(script);
+  }
+  //注意这里传入的json已经是一个Object了，而不是一个字符串，所以不需要进行JSON.parse转化，字符串的话json外面是有""符号的
+  function callback(json) {
+      var passage = json;
+      var contents = document.getElementById("contents");
+      var data = passage.result.data;
+      for (var i = 0; i < data.length; i++) {
+          var form = document.createElement("form");
+          var h2 = document.createElement("h2");
+          var a = document.createElement("a");
+          var p = document.createElement("p");
+          h2.innerHTML = data[i].title;
+          a.innerHTML = data[i].url;
+          a.setAttribute("href", data[i].url);
+          p.innerHTML = data[i].date;
+          form.appendChild(h2);
+          form.appendChild(a);
+          form.appendChild(p);
+          contents.appendChild(form);
+      }
+  }
+  addScript("http://localhost/uestc_project-master/try.php?jsonCallback=callback");
+</script>
+</body>
+</html>
