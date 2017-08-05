@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>常见算法的js实现</title>
+  </head>
+  <body>
+  <script>
+  //冒泡算法
+  function bubbleSort(arr){
+	var length=arr.length;
+	for(let j=length;j>1;j--){
+		for(let i=0;i<j;i++){
+			if(arr[i]>arr[i+1]){
+				var b=arr[i];
+				arr[i]=arr[i+1];
+				arr[i+1]=b;
+			}
+		}
+	};
+	return arr;
+  }
+  //快速排序
+  function quickSort(arr){
+	if(arr.length>1){
+		var base=arr[0],
+		left=[],
+		right=[];
+		for(let i=1;i<arr.length;i++){
+			if(arr[i]<base){
+				left.push(arr[i]);
+			}else{
+				right.push(arr[i]);
+			}
+		};
+		return quickSort(left).concat([base],quickSort(right));
+	}else{
+		return arr;//这一步容易忘记，没有这一步上面的quickSort就没有返回值啊
+	}
+  }
+  //简单选择排序
+  function simpleSort(arr){
+	var length=arr.length;
+	for(let i=0;i<length;i++){
+		var min=i;
+		for(let j=i;j<length;j++){
+			if(arr[j]>arr[j+1]){
+				min=j+1;
+			}
+		}
+		var b=arr[i];
+		arr[i]=arr[min];
+		arr[min]=b;
+	}
+	return arr;
+  }
+  </script>
+  </body>
+</html>
