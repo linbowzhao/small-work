@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vuex的辅助函数mapState的使用</title>
+  </head>
+  <body>
+<div id="app">
+<counter></counter>
+  <p>
+    <button @click="increment">+</button>
+    <button @click="decrement">-</button>
+  </p>
+</div>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/vuex"></script>
+  <script>
+  const store =new Vuex.Store({
+	state:{
+		count:0
+	},
+	mutations:{
+		increment:state=>state.count++,
+		decrement:state=>state.count--
+	},
+	computed:Vuex.mapState({
+		count:state=>state.count
+	})
+  });
+  const counter = {
+  template: "<div>{{ count }}</div>",
+  store,
+  computed: Vuex.mapState({//因为是通过<script>引入的，所以要用Vuex.的方式使用，在import引入下才可以直接用
+	count:'count'//可以简写成[‘count’],如果名称相同
+  })//这里就体现出来使用的方便性了，因为可能有多个组件要使用count属性，没有这个辅助函数的话，可能每个地方都要使用return 表达式返回，有了辅助函数就只需要定义一次
+}
+var vm=new Vue({
+  el: '#app',
+  components:{
+	counter
+  },
+  methods:{
+	increment(){
+		store.commit('increment')
+	},
+	decrement(){
+		store.commit('decrement')
+	}
+  }
+})
+  </script>
+  </body>
+</html>
