@@ -26,20 +26,15 @@
   });
   const counter = {
   template: "<div>{{ count }}</div>",
+  store,//直接把store导入根组件中，避免每次需要使用到state的时候频繁导入，可能会提高性能吧
   computed: {
     count () {
-      return this.$store.state.count
+      return store.state.count
     }
   }
 }
 var vm=new Vue({
   el: '#app',
-  store,//直接把store导入根组件中，避免每次需要使用到state的时候频繁导入，可能会提高性能吧
-  computed:{
-	count(){
-		return store.state.count
-	}
-  },
   components:{
 	counter
   },
