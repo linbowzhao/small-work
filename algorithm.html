@@ -94,6 +94,26 @@
 	sortHeap(arr)
 	return arr
 }
+//归并排序算法
+function sortConcat(arr1,arr2){
+	var len=arr2.length,
+		arr=[]
+	while(arr1.length>0&&arr2.length>0){
+		if(arr1[0]<arr2[0]){
+			arr.push(arr1.shift())
+		}else{
+			arr.push(arr2.shift())
+		}
+	}
+	return arr.concat(arr1).concat(arr2)
+}
+function mergeSort(arr){
+	if(arr.length===1)return arr
+	var mid=Math.floor(arr.length/2)
+	var left=arr.slice(0,mid),
+	right=arr.slice(mid)
+	return sortConcat(mergeSort(left),mergeSort(right))
+}
   </script>
   </body>
 </html>
