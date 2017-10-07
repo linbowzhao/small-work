@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>非父子组件通信</title>
+    <script src="https://unpkg.com/vue@2.1.8/dist/vue.js"></script>
+</head>
+<body>
+    <div id='app'>
+        <foo></foo>
+        <hr>
+        <bar></bar>
+    </div>
+	<script>
+		// 注册一个空的 Vue 实例，作为 ‘中转站’
+		var eventBus = new Vue({})
+		// foo 组件
+		var foo = {
+			template: '<div><p>the count of foo is {{fooCount}}</p>' +
+						'<button @click="addBar">add bar\'s count</button></div>',
+			data: function() {
+				return {
+					fooCount: 0            
+				}
+			},
+			methods: {
+				addBar: function() {
+					// 触发事件
+					eventBus.$emit('addBar')    
+				}
+			},
+			mounted: function() {
+				eventBus.$on('addFoo', function(num) {
+					this.fooCount +=num
+				}.bind(this)) 
+				// 这里必须将 this 绑定在组件实例上。如果不使用 bind , 也可以使用箭头函数。
+			}
+		}
+		// bar 组件
+		var bar = {
+			template: '<div><p>the count of bar is {{barCount}}</p>' +
+						'<button @click="addFoo">add foo\'s count</button></div>',
+			data: function() {
+				return {
+					barCount: 0
+				}
+			},
+			methods: {
+				addFoo: function() {
+					// 触发事件，同时传递一个参数
+					eventBus.$emit('addFoo', 2)
+				}
+			},
+			// 在 组件创建的钩子函数中 监听事件
+			mounted: function() {
+				eventBus.$on('addBar', function() {
+					this.barCount++
+				}.bind(this))
+			}
+		}
+		var vm = new Vue({
+			el: '#app',
+			components: {
+				foo,
+				bar
+			}
+		})
+	</script>
+</body>
+</html>
