@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue中的emit</title>
+  </head>
+  <body>
+	<div id = "app" >
+	  out:{{mes}};
+	  <child @click = "changeMes"></child>
+	</div>
+    <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+    <script>
+	  var child = {
+	  
+	    template: '<div><div @click="touchEmit">点击触发$emit:{{ mes }}</div><div @click="bindOn">通过$on绑定事件</div><button @click="touchOn">触发on</button></div>',
+		
+		
+		data(){
+		  return {mes:2}
+		},
+		 
+		methods: {
+		  bindOn(){
+		    this.$on('onEvent',()=>{
+			  this.mes = 100
+			  console.log('touchOn')
+			})
+		  },
+		  touchEmit(){
+		    this.$emit('click',this.mes)//后面是传入参数
+			console.log('emit')
+		  },
+		  touchOn(){
+		    this.$emit('onEvent')
+		  }
+		}
+	  }
+	  
+      var vm = new Vue({
+	  
+	    el: '#app',
+		
+		data:{
+		  mes:1
+		},
+		
+		methods: {
+		  changeMes(a){
+		    this.mes = a
+		  }
+		},
+		
+		components:{
+		  child: child
+		}
+	  })
+    </script>
+  </body>
+</html>
