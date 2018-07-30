@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Video视频截图</title>
+</head>
+<body>
+<h1>Video视频截图</h1>
+<video src="video.mp4" controls="controls">仅支持H264格式MP4</video>
+<img src="#">
+<button>截图</button>
+<script>
+    //  var image = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
+    //            save.href = data;
+    //            save.download = filename;
+    var video = document.querySelectorAll('video')[0];
+    document.querySelector('button').onclick = function(){
+        video2image(video,function(dataUrl){
+            document.querySelectorAll('img')[0].src = dataUrl;
+        });
+    };
+    function video2image(videoDom, foo){
+        var editFoo = function(videoDom, foo){
+            var width = videoDom.clientWidth,
+                height = videoDom.clientHeight,
+                canvas = document.createElement('CANVAS'),
+                ctx = canvas.getContext('2d');
+            canvas.width = width;
+            canvas.height = height;
+            ctx.drawImage(videoDom, 0, 0, width, height);
+            var image = canvas.toDataURL('image/png');
+            foo(image)
+        };
+        //加载完毕则马上执行
+        if(videoDom.readyState === 4){
+            editFoo(videoDom, foo);
+            return
+        }
+        //未加载完毕则绑定到回调事件里去
+        videoDom.addEventListener('canplaythrough',function(){
+            editFoo(videoDom, foo);
+        });
+    }
+</script>
+</body>
+</html>
